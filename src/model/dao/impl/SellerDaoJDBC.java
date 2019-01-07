@@ -53,36 +53,31 @@ public class SellerDaoJDBC implements SellerDao {
 			
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
-			
+
 			// Checks if the database has any registry
 			if (resultSet.next()) {
-				
-				Department department = new Department();
-				department.setId(resultSet.getInt("DepartmentId"));
-				department.setName(resultSet.getString("DepName"));
-				
-				Seller seller = new Seller();
-				seller.setId(resultSet.getInt("Id"));
-				seller.setName(resultSet.getString("Name"));
-				seller.setEmail(resultSet.getString("Email"));
-				seller.setBaseSalary(resultSet.getDouble("BaseSalary"));
-				seller.setBirthDate(resultSet.getDate("BirthDate"));
-				seller.setDepartment(department);
-				
+				Department department = instantiateDepartment(resultSet);
+				Seller seller = instantiateSeller(resultSet, department);
 				return seller;
-				
 			}
 			return null;
-			
-		}
-		catch (SQLException e) {
+
+		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
-		}
-		finally {
+		} finally {
 			DB.closeStatement(preparedStatement);
 			DB.closeResultSet(resultSet);
 		}
 
+	}
+
+	private Seller instantiateSeller(ResultSet resultSet, Department department) throws SQLException {
+		return new Seller(resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("Email"),
+				resultSet.getDate("BirthDate"), resultSet.getDouble("BaseSalary"), department);
+	}
+
+	private Department instantiateDepartment(ResultSet resultSet) throws SQLException {
+		return new Department(resultSet.getInt("DepartmentId"), resultSet.getString("DepName"));
 	}
 
 	@Override

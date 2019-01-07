@@ -8,7 +8,7 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		// Test findById implementation
+		System.out.println(" === TEST 1: seller findById implementation === "); 
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 		Seller seller = sellerDao.findById(3);
 		System.out.println(seller);
