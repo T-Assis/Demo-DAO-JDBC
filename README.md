@@ -1,2 +1,9 @@
 # Demo-DAO-JDBC
-Padrão de projeto DAO (Data Access Object) - JDBC
+## English:
+
+Demonstrating a DAO (Data Access Object) project - JDBC
+
+## Português:
+
+Demonstração de Projeto no padrão DAO (Data Access Object) - JDBC
+
