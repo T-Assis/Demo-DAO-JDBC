@@ -34,6 +34,7 @@ public class Program {
 			System.out.println(obj);
 		}
 		
+		
 		System.out.println();
 		System.out.println(" === TEST 4: seller insert implementation === ");			
 		Seller seller2 = new Seller(null, "Greg", "greg@gmail.com", new Date(), 4000.00, department);
@@ -41,6 +42,15 @@ public class Program {
 		System.out.println("Inserted! New id = " + seller2.getId());
 		System.out.println(seller2);
 		
+		
+		System.out.println();
+		System.out.println(" === TEST 5: seller update implementation === ");	
+		seller = sellerDao.findById(1);
+		seller.setName("Martha Waine");
+		seller.setEmail("marthawaine@gmail.com");
+		sellerDao.update(seller);
+		System.out.println("Update completed!");
+		System.out.println(seller);
 	}
 
 }
