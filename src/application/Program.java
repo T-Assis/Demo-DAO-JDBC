@@ -40,7 +40,7 @@ public class Program {
 		Seller seller2 = new Seller(null, "Greg", "greg@gmail.com", new Date(), 4000.00, department);
 		sellerDao.insert(seller2);
 		System.out.println("Inserted! New id = " + seller2.getId());
-		System.out.println(seller2);
+		System.out.println(seller2); 
 		
 		
 		System.out.println();
@@ -51,6 +51,12 @@ public class Program {
 		sellerDao.update(seller);
 		System.out.println("Update completed!");
 		System.out.println(seller);
+		
+		
+		System.out.println();
+		System.out.println(" === TEST 6: seller delete implementation === ");
+		System.out.println("Delete completed! Id = 7");
+		sellerDao.deleteById(7);
 	}
 
 }
